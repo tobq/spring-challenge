@@ -3,11 +3,16 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     id 'idea'
+    id 'application'
 }
 
 group = 'org.akinyemi.tobi'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
+
+application {
+    mainClass = 'org.akinyemi.tobi.challenge.ChallengeApplication'
+}
 
 repositories {
     mavenCentral()
