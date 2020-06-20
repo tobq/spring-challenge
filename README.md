@@ -18,14 +18,7 @@ Running the server is simple, using the installed gradle wrapper
 ---
 Now, you should be able to interact with the REST API at the following endpoints:
  * `http://localhost:8080/characters`
- * `http://localhost:8080/characters/{character_id}`
-
-TODO: 404 page
-
-DEPS:
-- spring web
-- spring webflux
-- bytes-java (tiny)
- -- mainly for fast byes-to-hex
- -- also has an md5 hash function
- ---- users the standard MessageDigest crypto class under the hood 
+ * `http://localhost:8080/characters/{character_id}?languageCode={translationCode}`
+    * The `translationCode` parameter is optional
+    * [List of supported language codes](https://cloud.google.com/translate/docs/languages)
+ * Additionally, you can visit the [swagger-ui](http://localhost:8080/swagger-ui.html) page to interactively "Try it out"
