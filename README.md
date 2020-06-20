@@ -1,6 +1,7 @@
 This is a RESTful API, implemented using Spring boot, for querying and translating Marvel Superhero data.
 
-##Setup
+Setup
+---
 ####  1. Configure environment variables for API Keys
 * Marvel Characters API (free)
     * `MARVAL_API_PUBLIC_KEY`: Marvel API public key
