@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -75,7 +75,7 @@ public class CharacterService {
                 .encodeHex();
     }
 
-    public List<Integer> getCharacterIds() {
+    public Collection<Integer> getCharacterIds() {
         return dao.selectCharacterIds();
     }
 

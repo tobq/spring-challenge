@@ -2,27 +2,30 @@ package org.akinyemi.tobi.challenge.api;
 
 import org.akinyemi.tobi.challenge.model.Character;
 import org.akinyemi.tobi.challenge.service.CharacterService;
+import org.akinyemi.tobi.challenge.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 @RequestMapping("characters")
 @RestController
 public class CharacterController {
-    private final CharacterService service;
+    private final CharacterService characterService;
+    private final TranslationService translationService;
 
     @Autowired
-    public CharacterController(CharacterService service) {
-        this.service = service;
+    public CharacterController(CharacterService characterService, TranslationService translationService) {
+        this.characterService = characterService;
+        this.translationService = translationService;
     }
 
     @GetMapping
-    public List<Integer> getCharacters() {
-        return service.getCharacterIds();
+    public Collection<Integer> getCharacters() {
+        return characterService.getCharacterIds();
     }
 
     @GetMapping(path = "{id}")

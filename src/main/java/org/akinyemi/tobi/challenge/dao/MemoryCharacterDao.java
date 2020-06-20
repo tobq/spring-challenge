@@ -4,9 +4,11 @@ import org.akinyemi.tobi.challenge.model.Character;
 import org.akinyemi.tobi.challenge.model.Image;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Repository("memoryDao")
@@ -18,26 +20,25 @@ public class MemoryCharacterDao implements CharacterDao {
 
     @Override
     public Optional<Character> selectCharacter(int id) {
-        return characters.stream()
-                .filter(character -> character.id() == id)
-                .findAny();
+        return Optional.ofNullable(characters.get(id));
     }
 
     @Override
-    public List<Character> selectCharacters() {
-        return characters;
+    public Collection<Character> selectCharacters() {
+        return characters.values();
     }
 
     @Override
-    public List<Integer> selectCharacterIds() {
-        return characters.stream()
+    public Collection<Integer> selectCharacterIds() {
+        return characters.values()
+                .stream()
                 .map(Character::id)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void insertCharacter(Character character) {
-        characters.add(character);
+        characters.put(character.id(), character);
     }
 
     @Override
