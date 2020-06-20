@@ -1,7 +1,6 @@
 package org.akinyemi.tobi.challenge.dao;
 
 import org.akinyemi.tobi.challenge.model.Character;
-import org.akinyemi.tobi.challenge.model.Image;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -11,12 +10,12 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * DAO implementation used for DEBUGGING
+ */
 @Repository("memoryDao")
 public class MemoryCharacterDao implements CharacterDao {
-    private final List<Character> characters = new ArrayList<>(List.of(
-            new Character(99394342, "Tobi", "The goat", new Image("https://en.gravatar.com/userimage/59344989/1e5f640a791a47b3bd4520a51de89dbb.png", ".jpeg")),
-            new Character(99394343, "Tobias", "The goat", new Image("https://en.gravatar.com/userimage/59344989/1e5f640a791a47b3bd4520a51de89dbb.png", ".jpeg"))
-    ));
+    private final Map<Integer, Character> characters = new ConcurrentHashMap<>();
 
     @Override
     public Optional<Character> selectCharacter(int id) {
