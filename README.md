@@ -2,14 +2,18 @@ Setup
 ---
 
 ###  1. Configure environment variables for API Keys
-* Marvel API keys
-    * `MARVAL_API_PRIVATE_KEY`
-    * `MARVAL_API_PUBLIC_KEY`
-* Google API keys (for translation)
-    * `GOOGLE_APPLICATION_CREDENTIALS `
+* Marvel Characters API (free)
+    * `MARVAL_API_PUBLIC_KEY`: Marvel API public key
+    * `MARVAL_API_PRIVATE_KEY`: Marvel API private key
+    - You can find/create keys [here](https://developer.marvel.com/account)
+* Google Translate API ([initially free](https://cloud.google.com/translate/pricing))
+    * `GOOGLE_APPLICATION_CREDENTIALS`: Path to JSON service account key
+    - You can generate a JSON service key [here](https://cloud.google.com/storage/docs/authentication?hl=en#service_accounts)   
     
 ### 2. Startup server
-* run `gradlew run`
+Running the server is simple, using the installed gradle wrapper
+ * Windows:`gradlew run`
+ * Mac/Linux: `./gradlew run`
 
 ---
 Now, you should be able to interact with the REST API at the following endpoints:
