@@ -11,8 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collection;
 import java.util.Optional;
 
-@RequestMapping("characters")
 @RestController
+@RequestMapping("characters")
 public class CharacterController {
     private final CharacterService characterService;
     private final TranslationService translationService;
@@ -38,9 +38,13 @@ public class CharacterController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Character not found");
 
         Character character = characterOpt.get();
+
+        // If the language code is not specified, the original (english) character is returned
         if (languageCode == null) return character;
+        // otherwise, a translated version is returned
         return translationService.translateCharacter(character,languageCode);
     }
 
 }
+
 

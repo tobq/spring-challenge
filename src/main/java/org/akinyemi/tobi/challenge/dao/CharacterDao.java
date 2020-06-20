@@ -18,4 +18,6 @@ public interface CharacterDao {
     void insertCharacter(Character character);
 
     void insertCharacters(List<Character> character);
+
+    long countCharacters();
 }
