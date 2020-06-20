@@ -27,4 +27,4 @@ Now, you should be able to interact with the REST API at the following endpoints
 > Note on Translation:
 >After a quick search, Marvel Super Hero name translations seem to be unorganised. Most countries use the English super hero names, and some of those who don't have multiple translations - Google's translation API does not have special entries for Marvel Super Heroes.
 >
->I've opted to turn off translation of Hero names, however, some uncommenting will give some translation
+>I've opted to turn off translation of Hero names, however, some uncommenting in the `TranslationService` will give translation (without marvel context)
