@@ -23,6 +23,7 @@ Now, you should be able to interact with the REST API at the following endpoints
     * The `translationCode` parameter is optional
     * [List of supported language codes](https://cloud.google.com/translate/docs/languages)
  * Additionally, you can visit the [swagger-ui](http://localhost:8080/swagger-ui.html) page to interactively "Try it out"
+    * The Swagger Shema is available at `http://localhost:8080/v2/api-docs`
  
   
 > Note on Translation:
