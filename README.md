@@ -12,7 +12,7 @@ Setup
     
 ### 2. Startup server
 Running the server is simple, using the installed gradle wrapper
- * Windows:`gradlew run`
+ * Windows: `gradlew run`
  * Mac/Linux: `./gradlew run`
 
 ---
