@@ -33,13 +33,13 @@ public class CharacterController {
             @PathVariable("id") int id,
             @RequestParam(value = "languageCode", required = false) String languageCode
     ) {
-        Optional<Character> characterOpt = service.getCharacter(id);
+        Optional<Character> characterOpt = characterService.getCharacter(id);
         if (characterOpt.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Character not found");
 
         Character character = characterOpt.get();
         if (languageCode == null) return character;
-        return service.translateCharacter(character);
+        return translationService.translateCharacter(character,languageCode);
     }
 
 }

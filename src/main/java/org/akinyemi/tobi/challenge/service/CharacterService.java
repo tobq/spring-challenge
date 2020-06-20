@@ -82,15 +82,4 @@ public class CharacterService {
     public Optional<Character> getCharacter(int id) {
         return dao.selectCharacter(id);
     }
-
-    public Character translateCharacter(Character character) {
-        String translatedDescription = character.description();
-
-        return new Character(
-                character.id(),
-                character.name(),
-                translatedDescription,
-                character.thumbnail()
-        );
-    }
 }

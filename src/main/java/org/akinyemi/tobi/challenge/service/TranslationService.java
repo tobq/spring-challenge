@@ -1,27 +1,33 @@
 package org.akinyemi.tobi.challenge.service;
 
-import at.favre.lib.bytes.Bytes;
-import org.akinyemi.tobi.challenge.dao.CharacterDao;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateException;
+import com.google.cloud.translate.TranslateOptions;
 import org.akinyemi.tobi.challenge.model.Character;
-import org.akinyemi.tobi.challenge.model.MarvelCharactersResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.logging.Logger;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class TranslationService {
-    public static final Logger SERVICE_LOGGER = Logger.getLogger("translation-service");
-    Translate translate = TranslateOptions.newBuilder().setApiKey("myKey").build().getService();
+    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    public static final Translate.TranslateOption ENGLISH_SOURCE_LANGUAGE = Translate.TranslateOption.sourceLanguage("en");
 
-    public Character translateCharacter(Character character) {
-        String translatedDescription = character.description();
+    public Character translateCharacter(Character character, String languageCode) {
+        Translate.TranslateOption translateOption = Translate.TranslateOption.targetLanguage(languageCode);
+
+        String translatedDescription;
+        try {
+            translatedDescription = translate.translate(
+                    character.description(),
+                    ENGLISH_SOURCE_LANGUAGE,
+                    translateOption
+            ).getTranslatedText();
+        } catch (TranslateException e) {
+            if (e.getReason().equals("invalid"))
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid language Code");
+            throw e;
+        }
 
         return new Character(
                 character.id(),
