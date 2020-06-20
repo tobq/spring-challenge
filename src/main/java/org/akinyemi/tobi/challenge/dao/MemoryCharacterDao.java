@@ -45,4 +45,9 @@ public class MemoryCharacterDao implements CharacterDao {
     public void insertCharacters(List<Character> characters) {
         characters.forEach(this::insertCharacter);
     }
+
+    @Override
+    public long countCharacters() {
+        return characters.size();
+    }
 }
