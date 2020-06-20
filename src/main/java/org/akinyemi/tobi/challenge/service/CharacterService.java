@@ -110,8 +110,8 @@ public class CharacterService {
                 .encodeHex();
     }
 
-    public Collection<Integer> getCharacterIds() {
-        return dao.selectCharacterIds();
+    public Collection<Integer> getAllCharacterIds() {
+        return dao.selectAllCharacterIds();
     }
 
     public Optional<Character> getCharacter(int id) {

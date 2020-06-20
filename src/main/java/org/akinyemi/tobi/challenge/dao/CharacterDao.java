@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CharacterDao {
-    //    void insertCharacter( Character character);
-
     Optional<Character> selectCharacter(int id);
 
-    Collection<Character> selectCharacters();
+    Collection<Character> selectAllCharacters();
 
-    Collection<Integer> selectCharacterIds();
+    Collection<Integer> selectAllCharacterIds();
 
     void insertCharacter(Character character);
 

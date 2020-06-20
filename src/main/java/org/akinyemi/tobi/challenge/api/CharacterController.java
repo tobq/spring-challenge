@@ -25,7 +25,7 @@ public class CharacterController {
 
     @GetMapping
     public Collection<Integer> getCharacters() {
-        return characterService.getCharacterIds();
+        return characterService.getAllCharacterIds();
     }
 
     @GetMapping(path = "{id}")

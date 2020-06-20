@@ -23,12 +23,12 @@ public class MemoryCharacterDao implements CharacterDao {
     }
 
     @Override
-    public Collection<Character> selectCharacters() {
+    public Collection<Character> selectAllCharacters() {
         return characters.values();
     }
 
     @Override
-    public Collection<Integer> selectCharacterIds() {
+    public Collection<Integer> selectAllCharacterIds() {
         return characters.values()
                 .stream()
                 .map(Character::id)
