@@ -42,9 +42,9 @@ public class CharacterService {
         SERVICE_LOGGER.info("Fetching character data from Marvel characters API...");
 //        SERVICE_LOGGER.fine("Fetching page of characters with offset: " + offset + "/" + total);
 
-        populateCharacterDatabase(0);
-        SERVICE_LOGGER.info("Finished fetching " + dao.countCharacters() + " characters from Marvel characters API");
-
+        populateCharacterDatabase(0, () -> SERVICE_LOGGER.info(
+                "Finished fetching %d characters from Marvel characters API".formatted(dao.countCharacters()))
+        );
     }
 
 
@@ -54,10 +54,11 @@ public class CharacterService {
      * Results are fetched in series to avoid rate limiting
      * - this also prevents desynchronisation of total / limit values
      *
-     * @param offset The requested offset (number of skipped results) of the call.
+     * @param offset       The requested offset (number of skipped results) of the call.
+     * @param doneCallback called when the database population has completed (all characters available have been fetched)
      * @see #fetchCharacters(int, Consumer)
      */
-    private void populateCharacterDatabase(int offset) {
+    private void populateCharacterDatabase(int offset, Runnable doneCallback) {
         //
         fetchCharacters(offset, response -> {
             if (response.code() != 200) return;
@@ -65,7 +66,8 @@ public class CharacterService {
             MarvalCharactersData data = response.data();
             dao.insertCharacters(data.results());
             int nextOffset = offset + data.count();
-            if (nextOffset < data.total()) populateCharacterDatabase(nextOffset);
+            if (nextOffset < data.total()) populateCharacterDatabase(nextOffset, doneCallback);
+            else doneCallback.run();
         });
     }
 
