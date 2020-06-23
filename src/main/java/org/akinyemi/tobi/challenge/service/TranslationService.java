@@ -46,6 +46,7 @@ public class TranslationService {
             // relays any other errors (unlikely)
             throw e;
         }
+//todo: throw http errors in controller, not translation service 
 
         return new Character(
                 character.id(),
