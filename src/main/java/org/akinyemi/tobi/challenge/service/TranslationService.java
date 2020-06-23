@@ -57,12 +57,10 @@ public class TranslationService {
     }
 
     private String translateEnglish(String sentence, String targetLanguageCode) {
-        String translatedDescription;
-        translatedDescription = translate.translate(
+        return translate.translate(
                 sentence,
                 ENGLISH_SOURCE_LANGUAGE,
                 Translate.TranslateOption.targetLanguage(targetLanguageCode)
         ).getTranslatedText();
-        return translatedDescription;
     }
 }
